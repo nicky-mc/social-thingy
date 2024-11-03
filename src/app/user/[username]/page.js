@@ -29,7 +29,9 @@ export default async function UserProfile({ params }) {
           <div className="flex justify-center mb-4">
             <Image
               src={profile.profile_picture}
-              alt={`${profile.username}'s profile`}
+                          alt={ `${ profile.username }'s profile` }
+                          width={ 300 }
+                            height={ 300 }
               className="rounded-full w-32 h-32"
             />
           </div>

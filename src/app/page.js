@@ -25,6 +25,8 @@ export default async function Home() {
               <Image
                 src={post.image_url}
                 alt="Post image"
+                width={ 800 }
+                height={ 600 }
                 className="w-full h-auto rounded-md"
               />
               <p className="mt-2 text-gray-600">

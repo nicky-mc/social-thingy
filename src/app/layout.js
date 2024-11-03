@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className="antialiased bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white">
           <Navbar />
-          <main className="container mx-auto p-4">
+          <main className="flex-1 p-4">
             {children}
           </main>
         </body>

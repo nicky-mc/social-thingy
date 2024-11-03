@@ -1,4 +1,3 @@
-// src/components/PostModal.js
 "use client";
 import React, { useState } from "react";
 

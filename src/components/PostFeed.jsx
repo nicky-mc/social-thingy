@@ -1,18 +1,50 @@
-// src/components/PostList.jsx
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import PostModal from "./PostModal";
+
 export default function PostList({ posts }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [postList, setPostList] = useState(posts);
+
+  const handleCreatePost = (newPost) => {
+    setPostList([...postList, { id: postList.length + 1, ...newPost }]);
+  };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
-      {posts.map((post) => (
-        <div key={post.id} className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title text-2xl font-bold text-primary">{post.title}</h2>
-            <p className="text-gray-700">{post.description}</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">View Post</button>
-            </div>
+    <div className="w-full max-w-3xl bg-base-100 rounded-lg shadow-lg p-6">
+      <button onClick={() => setIsModalOpen(true)} className="btn btn-primary mb-6">
+        Create New Post
+      </button>
+
+      {postList.length === 0 ? (
+        <p className="text-gray-600 text-center">No posts yet</p>
+      ) : (
+        postList.map((post) => (
+          <div key={post.id} className="bg-white shadow-md rounded-md p-4 mb-6">
+            <Link href={`/posts/${post.id}`} className="text-2xl text-primary font-bold mb-2 block">
+              Photo Post #{post.id}
+            </Link>
+            <Image
+              src={post.image_url}
+              alt={`Photo post ${post.id}`}
+              width={800}
+              height={600}
+              className="w-full h-auto mb-4 rounded-lg"
+            />
+            <small className="text-secondary">
+              Posted on: {new Date(post.created_at).toLocaleDateString()}
+            </small>
           </div>
-        </div>
-      ))}
+        ))
+      )}
+
+      <PostModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onCreate={handleCreatePost}
+      />
     </div>
   );
 }

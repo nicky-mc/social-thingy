@@ -1,6 +1,6 @@
 import { db } from "@/utils/dbConnection";
-import Image from "next/image";
 import Link from "next/link";
+import PostList from "@/components/PostFeed";
 
 export const metadata = {
   title: "Photo Gallery",
@@ -26,33 +26,7 @@ export default async function Posts() {
         Latest Photo Posts
       </h1>
 
-      <div className="max-w-3xl bg-base-100 rounded-lg shadow-lg p-6">
-        {posts.length === 0 ? (
-          <p className="text-gray-600 text-center">No posts yet</p>
-        ) : (
-          posts.map((post) => (
-            <div
-              key={post.id}
-              className="bg-white shadow-md rounded-md p-4 mb-6"
-            >
-              <Link
-                href={`/posts/${post.id}`}
-                className="text-2xl text-primary font-bold mb-2 block"
-              >
-                Photo Post #{post.id}
-              </Link>
-              <Image
-                src={post.image_url}
-                alt={`Photo post ${post.id}`}
-                className="w-full h-auto mb-4 rounded-lg"
-              />
-              <small className="text-secondary">
-                Posted on: {new Date(post.created_at).toLocaleDateString()}
-              </small>
-            </div>
-          ))
-        )}
-      </div>
+      <PostList posts={posts} />
 
       <footer className="mt-8 text-center">
         <Link href="/" className="btn btn-primary">
