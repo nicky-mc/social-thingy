@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </Link>
         </li>
         <li className="mb-2">
-          <Link href="/create-post" className="btn btn-ghost w-full text-left">
+          <Link href="/profile-creation" className="btn btn-ghost w-full text-left">
             Create Post
           </Link>
         </li>
